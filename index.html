@@ -90,11 +90,6 @@
       }
     }
 
-    @keyframes spinDisc {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
     #nav {
       position: relative;
       width: 480px;
@@ -154,26 +149,30 @@
       height: 66px;
       background: #EBB5DD;
       border: 1px solid #e5e5e5;
-      border-radius: 100%;
+      border-radius: 50%;
       position: absolute;
       left: 50%;
       padding: 6px;
       margin-left: -39px;
       top: 45px;
       animation: pulse 2s infinite;
+      box-sizing: content-box;
     }
 
     .icon2 {
       width: 66px;
       height: 66px;
-      border-radius: 100%;
-      position: absolute;
+      border-radius: 50%;
+      position: relative;
+      overflow: hidden;
     }
 
     .icon2 img {
-      width: 66px;
-      height: 66px;
-      border-radius: 100%;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
     }
 
     .username {
@@ -413,12 +412,15 @@
       padding: 10px;
       background: #EAE4EB;
       animation: pulse 2s infinite;
+      box-sizing: content-box;
     }
 
     .pfp img {
-      width: 80px;
-      height: 80px;
+      width: 100%;
+      height: 100%;
       border-radius: 50%;
+      object-fit: cover;
+      display: block;
     }
 
     .ocname {
@@ -450,10 +452,10 @@
     }
 
     .zocials {
-      width: 300px;
+      width: 360px;
       max-height: 420px;
       position: absolute;
-      left: 50px;
+      left: 20px;
       top: -10px;
       overflow-y: auto;
       padding-right: 4px;
@@ -477,10 +479,10 @@
     }
 
     .twibox {
-      width: 260px;
+      width: 290px;
       height: 380px;
-      background: #fdfcfc;
-      border: 1px solid #e5e5e5;
+      background: #f0b2d2;
+      border: 1px solid #e295bd;
       margin: 0 auto 15px auto;
       border-radius: 15px;
       position: relative;
@@ -489,13 +491,13 @@
     }
 
     .instabox {
-      width: 260px;
+      width: 100%;
       height: 32px;
-      border-bottom: 1px solid #e5e5e5;
+      border-bottom: 1px solid #e295bd;
       position: absolute;
       top: 0;
       left: 0;
-      background: #fff;
+      background: rgba(255, 255, 255, 0.65);
       z-index: 2;
     }
 
@@ -517,7 +519,7 @@
     }
 
     .igname {
-      width: 215px;
+      width: 245px;
       font-family: 'Poppins', sans-serif;
       font-size: 8px;
       font-weight: 700;
@@ -551,7 +553,7 @@
     }
 
     .igpost {
-      width: 260px;
+      width: 100%;
       height: 250px;
       background: #fafafa;
       position: absolute;
@@ -561,13 +563,13 @@
     }
 
     .igpost img {
-      width: 260px;
+      width: 100%;
       height: 250px;
       object-fit: cover;
     }
 
     .posticons {
-      width: 240px;
+      width: calc(100% - 20px);
       height: 20px;
       position: absolute;
       top: 290px;
@@ -580,7 +582,7 @@
     }
 
     .igdesc {
-      width: 240px;
+      width: calc(100% - 20px);
       height: 60px;
       position: absolute;
       top: 315px;
@@ -593,16 +595,16 @@
     }
 
     .music-card {
-      width: 270px;
-      height: 350px;
+      width: 320px;
+      height: 360px;
       background: #fdfcfc;
       border: 1px solid #E2B5EB;
-      border-radius: 24px;
+      border-radius: 28px;
       position: absolute;
-      left: 65px;
-      top: 25px;
-      box-shadow: 0px 8px 20px rgba(125, 47, 105, 0.15);
-      padding: 20px;
+      left: 40px;
+      top: 20px;
+      box-shadow: 0px 8px 25px rgba(125, 47, 105, 0.15);
+      padding: 18px;
       box-sizing: border-box;
       display: flex;
       flex-direction: column;
@@ -613,13 +615,13 @@
     .player-header {
       text-align: center;
       width: 100%;
-      margin-top: 10px;
+      margin-top: 5px;
     }
 
     .vinyl-container {
-      width: 120px;
-      height: 120px;
-      margin: 0 auto 12px auto;
+      width: 110px;
+      height: 110px;
+      margin: 0 auto 10px auto;
       position: relative;
       display: flex;
       align-items: center;
@@ -627,12 +629,12 @@
     }
 
     .vinyl-disc {
-      width: 110px;
-      height: 110px;
+      width: 105px;
+      height: 105px;
       border-radius: 50%;
-      background: radial-gradient(circle, #333 30%, #111 70%);
+      background: radial-gradient(circle, #2b2b2b 28%, #111 70%);
       border: 3px solid #EBB5DD;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
       position: relative;
       animation: spinDisc 6s linear infinite;
       animation-play-state: paused;
@@ -644,8 +646,8 @@
     }
 
     .vinyl-disc img {
-      width: 50px;
-      height: 50px;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
       position: absolute;
       top: 50%;
@@ -666,7 +668,7 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      max-width: 210px;
+      max-width: 240px;
     }
 
     .track-artist {
@@ -680,7 +682,7 @@
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
       align-items: center;
     }
 
@@ -696,7 +698,8 @@
       color: #888;
       font-family: 'Poppins', sans-serif;
       font-weight: 600;
-      width: 25px;
+      width: 28px;
+      text-align: center;
     }
 
     .progress-bar {
@@ -746,9 +749,9 @@
     }
 
     .ctrl-btn.play-main {
-      width: 44px;
-      height: 44px;
-      font-size: 16px;
+      width: 42px;
+      height: 42px;
+      font-size: 15px;
       background: #7D2F69;
       border: 2px solid #EBB5DD;
     }
@@ -757,27 +760,29 @@
       background: #a2428b;
     }
 
-    /* Playlist mini section */
     .track-list {
       width: 100%;
       background: #f7eff6;
       border-radius: 10px;
-      padding: 5px;
-      max-height: 50px;
+      padding: 4px;
+      max-height: 55px;
       overflow-y: auto;
       border: 1px solid #f0dfed;
+      box-sizing: border-box;
     }
 
     .playlist-item {
-      padding: 3px 6px;
+      padding: 4px 8px;
       font-size: 8px;
       color: #666;
-      border-radius: 5px;
+      border-radius: 6px;
       cursor: pointer;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
       transition: 0.2s;
+      display: flex;
+      justify-content: space-between;
     }
 
     .playlist-item.active, .playlist-item:hover {
@@ -804,7 +809,7 @@
           <div class="overlay">   
             <div class="icon">
               <div class="icon2">
-                <img src="https://xatimg.com/image/yPwGwTJfapiL.png" alt="Lanita Avatar" style="border-radius:100%; width: 66px; height: 66px;">
+            <img src="https://xatimg.com/image/yPwGwTJfapiL.png" alt="Lanita Avatar" style="border-radius:100%; width: 66px; height: 66px;">
               </div>
             </div>
             <div class="username">Lanita</div>
@@ -842,15 +847,13 @@
             </a>   
           </div>
 
-          <!-- Icon 3: Music Player Popup Trigger -->
+          <!-- Icon 3: YouTube Link -->
           <div class="nlinks">
-            <a href="#?w=400" rel="3" class="poplight" title="Reproductor de Música">
+            <a href="https://www.youtube.com" target="_blank" title="YouTube">
               <div class="nicon">
-                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 256 256">
-                  <path d="M216 40H40a16 16 0 0 0-16 16v144a16 16 0 0 0 16 16h176a16 16 0 0 0 16-16V56a16 16 0 0 0-16-16zm-88 128a32 32 0 1 1 32-32a32.036 32.036 0 0 1-32 32zm48-64a8 8 0 0 1-8 8h-80a8 8 0 0 1 0-16h80a8 8 0 0 1 8 8z" fill="currentColor"></path>
-                </svg>
+                <i class="fa-brands fa-youtube"></i>
               </div>
-            </a>  
+            </a>
           </div>
 
           <!-- Icon 4: External Link -->
@@ -1121,48 +1124,6 @@
     </div>
   </div>
 
-  <div id="3" class="popup_block">
-    <div class="music-card">
-      <div class="buttonie close-btn" style="position: absolute; right: 15px; top: 15px; z-index: 10;">
-        <i class="fa-solid fa-xmark"></i>
-      </div>
-
-      <div class="player-header">
-        <div class="vinyl-container">
-          <div class="vinyl-disc" id="vinyl-disc">
-            <img draggable="false" src="https://xatimg.com/image/yPwGwTJfapiL.png" alt="Vinyl Cover">
-          </div>
-        </div>
-        <div class="track-title" id="track-title">Mi Kama</div>
-        <div class="track-artist" id="track-artist">Paloma Mami</div>
-      </div>
-
-      <div class="player-controls">
-        <div class="progress-bar-wrap">
-          <span class="time-text" id="time-current">0:00</span>
-          <div class="progress-bar" id="progress-container">
-            <div class="progress-fill" id="progress-fill"></div>
-          </div>
-          <span class="time-text" id="time-duration">0:00</span>
-        </div>
-
-        <div class="btn-row">
-          <div class="ctrl-btn" id="btn-prev"><i class="fa-solid fa-backward-step"></i></div>
-          <div class="ctrl-btn play-main" id="btn-play"><i class="fa-solid fa-play" id="play-icon"></i></div>
-          <div class="ctrl-btn" id="btn-next"><i class="fa-solid fa-forward-step"></i></div>
-        </div>
-      </div>
-
-      <div class="track-list">
-        <div class="playlist-item active" data-index="0">1. Paloma Mami - Mi Kama</div>
-        <div class="playlist-item" data-index="1">2. Métrika - Taser de mama</div>
-        <div class="playlist-item" data-index="2">3. Bad Gyal - Da Me</div>
-      </div>
-
-      <audio id="audio-player" crossorigin="anonymous" preload="auto"></audio>
-    </div>
-  </div>
-
   <script>
     $(document).ready(function() {
       // 1. Popup Lightbox Trigger
@@ -1191,174 +1152,6 @@
         });
         return false;
       });
-
-      const songs = [
-        {
-          title: "Mi Kama",
-          artist: "Paloma Mami",
-          query: "Paloma Mami Mi Kama",
-          fallbackSrc: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-          src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
-        },
-        {
-          title: "Taser de mama",
-          artist: "Métrika",
-          query: "Metrika Taser de mama",
-          fallbackSrc: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
-          src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"
-        },
-        {
-          title: "Da Me",
-          artist: "Bad Gyal",
-          query: "Bad Gyal Da Me",
-          fallbackSrc: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
-          src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3"
-        }
-      ];
-
-      let currentSongIndex = 0;
-      const audio = document.getElementById('audio-player');
-      const playBtn = document.getElementById('btn-play');
-      const playIcon = document.getElementById('play-icon');
-      const prevBtn = document.getElementById('btn-prev');
-      const nextBtn = document.getElementById('btn-next');
-      const vinylDisc = document.getElementById('vinyl-disc');
-      const progressContainer = document.getElementById('progress-container');
-      const progressFill = document.getElementById('progress-fill');
-      const timeCurrent = document.getElementById('time-current');
-      const timeDuration = document.getElementById('time-duration');
-      const trackTitle = document.getElementById('track-title');
-      const trackArtist = document.getElementById('track-artist');
-
-      function safePlay() {
-        const playPromise = audio.play();
-        if (playPromise !== undefined) {
-          playPromise
-            .then(() => {
-              playIcon.className = 'fa-solid fa-pause';
-              vinylDisc.classList.add('playing');
-            })
-            .catch(err => {
-              console.warn('Playback interrupted or prevented by browser:', err);
-              playIcon.className = 'fa-solid fa-play';
-              vinylDisc.classList.remove('playing');
-            });
-        }
-      }
-
-      function loadSong(index, shouldPlay = false) {
-        currentSongIndex = index;
-        const song = songs[index];
-        const newSrc = song.src || song.fallbackSrc;
-
-        if (audio.src !== newSrc) {
-          audio.pause();
-          audio.src = newSrc;
-          audio.load();
-        }
-
-        trackTitle.textContent = song.title;
-        trackArtist.textContent = song.artist;
-
-        $('.playlist-item').removeClass('active');
-        $(`.playlist-item[data-index="${index}"]`).addClass('active');
-
-        if (shouldPlay) {
-          safePlay();
-        }
-      }
-
-      function fetchAudioPreviews() {
-        songs.forEach((song, idx) => {
-          const apiUrl = `https://itunes.apple.com/search?term=${encodeURIComponent(song.query)}&limit=1&media=music`;
-          fetch(apiUrl)
-            .then(response => {
-              if (!response.ok) throw new Error('Network response error');
-              return response.json();
-            })
-            .then(data => {
-              if (data.results && data.results.length > 0 && data.results[0].previewUrl) {
-                song.src = data.results[0].previewUrl;
-                if (currentSongIndex === idx && audio.paused) {
-                  audio.src = song.src;
-                }
-              }
-            })
-            .catch(err => {
-              console.warn("Using default audio source for " + song.title, err);
-            });
-        });
-      }
-
-      function togglePlay() {
-        if (audio.paused) {
-          safePlay();
-        } else {
-          audio.pause();
-          playIcon.className = 'fa-solid fa-play';
-          vinylDisc.classList.remove('playing');
-        }
-      }
-
-      function formatTime(seconds) {
-        if (isNaN(seconds) || !isFinite(seconds)) return "0:00";
-        const mins = Math.floor(seconds / 60);
-        const secs = Math.floor(seconds % 60);
-        return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
-      }
-
-      playBtn.addEventListener('click', togglePlay);
-
-      prevBtn.addEventListener('click', () => {
-        const nextIndex = (currentSongIndex - 1 + songs.length) % songs.length;
-        loadSong(nextIndex, true);
-      });
-
-      nextBtn.addEventListener('click', () => {
-        const nextIndex = (currentSongIndex + 1) % songs.length;
-        loadSong(nextIndex, true);
-      });
-
-      audio.addEventListener('timeupdate', () => {
-        if (audio.duration) {
-          const percent = (audio.currentTime / audio.duration) * 100;
-          progressFill.style.width = percent + '%';
-          timeCurrent.textContent = formatTime(audio.currentTime);
-          timeDuration.textContent = formatTime(audio.duration);
-        }
-      });
-
-      audio.addEventListener('ended', () => {
-        const nextIndex = (currentSongIndex + 1) % songs.length;
-        loadSong(nextIndex, true);
-      });
-
-      audio.addEventListener('error', () => {
-        const song = songs[currentSongIndex];
-        if (audio.src !== song.fallbackSrc) {
-          audio.src = song.fallbackSrc;
-          audio.load();
-          if (vinylDisc.classList.contains('playing')) {
-            safePlay();
-          }
-        }
-      });
-
-      progressContainer.addEventListener('click', (e) => {
-        const width = progressContainer.clientWidth;
-        const clickX = e.offsetX;
-        if (audio.duration) {
-          audio.currentTime = (clickX / width) * audio.duration;
-        }
-      });
-
-      $('.playlist-item').click(function() {
-        const idx = parseInt($(this).data('index'));
-        loadSong(idx, true);
-      });
-
-      loadSong(0, false);
-      fetchAudioPreviews();
     });
   </script>
 </body>
