@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lanita - Profile & Music Player</title>
+
+  <!-- Google Fonts: Be Vietnam & Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam:wght@400;500;700&family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome CDN for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- jQuery & jQuery UI -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+  <style>
+    body {
+      background-color: #E6CCDF;
+      background: #E6CCDF;
+      font-family: 'Be Vietnam', sans-serif;
+      font-size: 9px;
+      color: #2e2e2e;
+      letter-spacing: 0.3px;
+      line-height: 180%;
+      text-transform: lowercase;
+      text-align: justify;
+      cursor: url('https://i.postimg.cc/Px4ysW9f/tiny.png'), auto;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    small, sub, sup {
+      font-size: 9px;
+    }
+
+    b, bold, strong {
+      color: #CF8678;
+      font-weight: bold; 
+      font-family: 'Poppins', sans-serif;
+      text-transform: uppercase;
+    }
+
+    i, italic {
+      color: #f8d8af;
+    }
+
+    a { 
+      cursor: url('https://i.postimg.cc/Px4ysW9f/tiny.png'), auto;
+      color: #D09078;
+      text-decoration: none;
+      font-family: 'Poppins', sans-serif;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+
+    ::-webkit-scrollbar {
+      display: none;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 #f8d8af;
+        opacity: 1;
+      }
+      70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+      }
+    }
+
+    @keyframes scale-up-center {
+      0% {
+        transform: scale(0.5);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    @keyframes spinDisc {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    #nav {
+      position: relative;
+      width: 371px;
+      height: 430px;
+    }
+
+    .navi {
+      width: 371px;
+      height: 430px;
+      border: 1px solid #e5e5e5;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      background: #fbfbfb;
+      overflow: hidden;
+      border-radius: 0px 50px 0px 50px;
+      box-shadow: 4px 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .navside {
+      width: 150px;
+      height: 500px;
+      position: absolute;
+      border-left: 1px solid #e5e5e5;
+      right: 0px;
+      overflow: hidden;
+    }
+
+    .grid {
+      width: 1000px;
+      height: 1000px;
+      background-size: 34px 34px;
+      background-image: linear-gradient(to right, #C0898D 1px, transparent 1px), linear-gradient(to bottom, #C0898D 1px, transparent 1px);
+      position: absolute;
+      left: -738px;
+      top: -14px;
+      background-color: #EBB5DD;
+    }
+
+    .screen {
+      width: 280px;
+      height: 180px;
+      background: #D2BCD4;
+      border: 1px solid #e5e5e5;
+      position: absolute;
+      border-radius: 20px;
+      left: 35px;
+      top: 49px;
+      overflow: hidden;
+      padding: 10px;
+      box-shadow: 0px 0px 5px rgba(0,0,0,0.04);
+      animation: scale-up-center 0.7s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+    }
+
+    .icon {
+      width: 50px;
+      height: 50px;
+      background: #EBB5DD;
+      border: 1px solid #e5e5e5;
+      border-radius: 100%;
+      position: absolute;
+      left: 50%;
+      padding: 6px;
+      margin-left: -32px;
+      top: 30px;
+      animation: pulse 2s infinite;
+    }
+
+    .icon2 {
+      width: 50px;
+      height: 50px;
+      border-radius: 100%;
+      position: absolute;
+    }
+
+    .icon2 img {
+      width: 50px;
+      height: 50px;
+      border-radius: 100%;
+    }
+
+    .username {
+      width: 100px;
+      height: 20px;
+      border-radius: 3px;
+      position: absolute;
+      font-family: 'Poppins', sans-serif;
+      text-transform: none;
+      font-weight: 900;
+      left: 50%;
+      margin-left: -60px;
+      top: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #EBB5DD;
+      padding: 0px 10px 2px 10px;
+      line-height: 100%;
+      font-size: 11px;
+    }
+
+    .pass {
+      width: 100px;
+      height: 20px;
+      border-radius: 3px;
+      position: absolute;
+      background: rgba(255,255,255,0.4);
+      left: 50%;
+      margin-left: -60px;
+      top: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0px 10px 2px 10px;
+      line-height: 100%;
+      color: #7D2F69;
+      letter-spacing: 2px;
+    }
+
+    .wallpaper {
+      width: 280px;
+      height: 180px;
+      background: #fbfbfb;
+      position: absolute;
+      border-radius: 15px;
+      overflow: hidden;
+    }
+
+    .wallpaper img {
+      width: 280px;
+      height: 180px;
+      position: absolute;
+      border-radius: 15px; 
+    }
+
+    .overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(234, 228, 235, 0.51);
+      backdrop-filter: blur(1px);
+      overflow: hidden;
+      width: 100%;
+      height: 0;
+      transition: .8s ease;
+      border-radius: 15px; 
+    }
+
+    .wallpaper:hover .overlay {
+      height: 100%;
+    }
+
+    .navbottom {
+      width: 371px;
+      height: 130px;
+      background: #fefefe;
+      border-top: 1px solid #E2B5EB;
+      position: absolute;
+      bottom: 0px;
+    }
+
+    .navtext {
+      width: 220px;
+      height: 43px;
+      border-bottom: 1px solid #E2B5EB;
+      position: absolute;
+      top: 0px;
+    }
+
+    .mun {
+      width: 180px;
+      height: 19px;
+      position: absolute;
+      text-align: center;
+      left: 20px;
+      top: 12px;
+    }
+
+    .navmenu {
+      width: 190px;
+      height: 40px;
+      position: absolute;
+      left: 15px;
+      bottom: 25px;
+      text-align: center;
+    }
+
+    .nlinks {
+      width: 30px;
+      height: 30px;
+      margin: 6px 5px;
+      display: inline-block;
+      background: rgba(235, 181, 221);
+      border: 1px solid #f8d8af;
+      box-shadow: 0px 0px 5px rgba(0,0,0,0.02);
+      transition: 0.3s;
+      border-radius: 50%;
+    }
+
+    .nlinks:hover {
+      background: rgba(232, 197, 223);
+      border: 1px solid #7D2F69;
+      transition: 0.3s;
+    }
+
+    .nicon {
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: black;
+      mix-blend-mode: soft-light;
+    }
+
+    .navextra {
+      width: 150px;
+      height: 130px;
+      border-left: 1px solid #E2B5EB;
+      position: absolute;
+      right: 0px;
+    }
+
+    .nave {
+      width: 100px;
+      height: 80px;
+      position: absolute;
+      left: 25px;
+      top: 25px;
+      line-height: 175%;
+    }
+
+    .extra {
+      margin-right: 12px;
+      color: #E2B5EB;
+    }
+
+    #fade {
+      display: none;
+      background: rgba(234, 228, 235, 0.65);
+      position: fixed; 
+      left: 0;
+      top: 0;
+      width: 100%; 
+      height: 100%;
+      z-index: 999999;
+      backdrop-filter: blur(4px);
+    }
+
+    .popup_block {
+      display: none;
+      width: 400px;
+      height: 400px;
+      position: fixed;
+      z-index: 9999999;
+      top: 50%;
+      left: 50%;
+      margin-left: -200px !important;
+      margin-top: -200px !important;
+    }
+
+    .profile {
+      width: 325px;
+      height: 250px;
+      background: #fefefe;
+      border: 1px solid #EBD1F0;
+      position: absolute;
+      left: 35px;
+      top: 75px;
+      border-radius: 30px;
+      box-shadow: 0px 0px 15px rgba(0,0,0,0.06);
+    }
+
+    .buttonie {
+      width: 26px;
+      height: 26px;
+      background: rgba(235, 209, 240, 0.51);
+      position: absolute;
+      border-radius: 50%;
+      right: 15px;
+      top: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(217, 151, 132, 0.81);
+      font-size: 14px;
+      border: 1px solid #f8f3d1;
+      transition: 0.3s;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .buttonie:hover {
+      transition: 0.3s;
+      background: rgba(235, 209, 240, 0.9);
+      border: 1px solid #f8d8af;
+    }
+
+    .pfp {
+      width: 80px;
+      height: 80px;
+      border: 1px solid #e5e5e5;
+      position: absolute;
+      top: 30px;
+      left: 50%;
+      margin-left: -51px;
+      border-radius: 50%;
+      padding: 10px;
+      background: #EAE4EB;
+      animation: pulse 2s infinite;
+    }
+
+    .pfp img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+    }
+
+    .ocname {
+      width: 250px;
+      height: 20px;
+      position: absolute;
+      left: 35px;
+      top: 145px;
+      font-family: 'Poppins', sans-serif;
+      text-transform: uppercase;
+      font-size: 18px;
+      font-weight: 800;
+      color: #EBD1F0;
+      text-align: center;
+    }
+
+    .bio {
+      width: 250px;
+      height: 60px;
+      position: absolute;
+      left: 37px;
+      bottom: 20px;
+      overflow-y: auto;
+      line-height: 140%;
+      text-align: center;
+      color: #7D2F69;
+      font-size: 10px;
+      font-weight: 600;
+    }
+
+    .zocials {
+      width: 300px;
+      max-height: 420px;
+      position: absolute;
+      left: 50px;
+      top: -10px;
+      overflow-y: auto;
+      padding-right: 4px;
+      padding-top: 10px;
+      padding-bottom: 20px;
+    }
+
+    .zocials::-webkit-scrollbar {
+      display: block;
+      width: 5px;
+    }
+
+    .zocials::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 10px;
+    }
+
+    .zocials::-webkit-scrollbar-thumb {
+      background: #E2B5EB;
+      border-radius: 10px;
+    }
+
+    .twibox {
+      width: 260px;
+      height: 380px;
+      background: #fdfcfc;
+      border: 1px solid #e5e5e5;
+      margin: 0 auto 15px auto;
+      border-radius: 15px;
+      position: relative;
+      box-shadow: 0px 4px 15px rgba(0,0,0,0.05);
+      overflow: hidden;
+    }
+
+    .instabox {
+      width: 260px;
+      height: 32px;
+      border-bottom: 1px solid #e5e5e5;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: #fff;
+      z-index: 2;
+    }
+
+    .igpfp {
+      width: 20px;
+      height: 20px;
+      border: 1px solid #e5e5e5;
+      border-radius: 50%;
+      position: absolute;
+      left: 6px;
+      top: 5px;
+      overflow: hidden;
+    }
+
+    .igpfp img {
+      width: 20px;
+      height: 20px;
+      object-cover: cover;
+    }
+
+    .igname {
+      width: 215px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 8px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      left: 35px;
+      position: absolute;
+      top: 8px;
+      color: #333;
+    }
+
+    .igfollow {
+      font-weight: 600;
+      font-size: 7px;
+      color: #CC6FDE;
+      margin-left: 5px;
+      transition: 0.3s;
+    }
+
+    .igfollow:hover {
+      transform: scale(1.1);
+      cursor: url('https://i.postimg.cc/Px4ysW9f/tiny.png'), auto;
+    }
+
+    .iggie {
+      font-weight: 600;
+      font-size: 12px;
+      float: right;
+      margin-right: 10px;
+      color: #888;
+    }
+
+    .igpost {
+      width: 260px;
+      height: 250px;
+      background: #fafafa;
+      position: absolute;
+      top: 32px;
+      border-bottom: 1px solid #e5e5e5;
+      overflow: hidden;
+    }
+
+    .igpost img {
+      width: 260px;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .posticons {
+      width: 240px;
+      height: 20px;
+      position: absolute;
+      top: 290px;
+      left: 10px;
+      font-size: 16px;
+      letter-spacing: 6px;
+      color: #E2B5EB;
+      display: flex;
+      align-items: center;
+    }
+
+    .igdesc {
+      width: 240px;
+      height: 60px;
+      position: absolute;
+      top: 315px;
+      left: 10px;
+      overflow-y: auto;
+      font-size: 9px;
+      color: #555;
+      line-height: 130%;
+      text-transform: none;
+    }
+
+    .music-card {
+      width: 270px;
+      height: 350px;
+      background: #fdfcfc;
+      border: 1px solid #E2B5EB;
+      border-radius: 24px;
+      position: absolute;
+      left: 65px;
+      top: 25px;
+      box-shadow: 0px 8px 20px rgba(125, 47, 105, 0.15);
+      padding: 20px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .player-header {
+      text-align: center;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .vinyl-container {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 12px auto;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .vinyl-disc {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #333 30%, #111 70%);
+      border: 3px solid #EBB5DD;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      position: relative;
+      animation: spinDisc 6s linear infinite;
+      animation-play-state: paused;
+      overflow: hidden;
+    }
+
+    .vinyl-disc.playing {
+      animation-play-state: running;
+    }
+
+    .vinyl-disc img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 2px solid #fff;
+      object-fit: cover;
+    }
+
+    .track-title {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: 13px;
+      color: #7D2F69;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 210px;
+    }
+
+    .track-artist {
+      font-size: 9px;
+      color: #D09078;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .player-controls {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .progress-bar-wrap {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .time-text {
+      font-size: 8px;
+      color: #888;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      width: 25px;
+    }
+
+    .progress-bar {
+      flex-grow: 1;
+      height: 6px;
+      background: #EAE4EB;
+      border-radius: 10px;
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #EBB5DD, #CF8678);
+      border-radius: 10px;
+      transition: width 0.1s linear;
+    }
+
+    .btn-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .ctrl-btn {
+      background: #EBB5DD;
+      border: 1px solid #f8d8af;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 12px;
+      cursor: pointer;
+      transition: 0.2s;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .ctrl-btn:hover {
+      background: #CF8678;
+      transform: scale(1.08);
+    }
+
+    .ctrl-btn.play-main {
+      width: 44px;
+      height: 44px;
+      font-size: 16px;
+      background: #7D2F69;
+      border: 2px solid #EBB5DD;
+    }
+
+    .ctrl-btn.play-main:hover {
+      background: #a2428b;
+    }
+
+    /* Playlist mini section */
+    .track-list {
+      width: 100%;
+      background: #f7eff6;
+      border-radius: 10px;
+      padding: 5px;
+      max-height: 50px;
+      overflow-y: auto;
+      border: 1px solid #f0dfed;
+    }
+
+    .playlist-item {
+      padding: 3px 6px;
+      font-size: 8px;
+      color: #666;
+      border-radius: 5px;
+      cursor: pointer;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: 0.2s;
+    }
+
+    .playlist-item.active, .playlist-item:hover {
+      background: #EBB5DD;
+      color: #fff;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- partial:index.partial.html -->
+  <div id="nav">
+    <div class="navi">
+
+      <!-- Right decorative grid -->
+      <div class="navside">
+        <div class="grid"></div>   
+      </div>
+
+      <!-- Main Wallpaper & Login Screen -->
+      <div class="screen">
+        <div class="wallpaper">
+          <img draggable="false" src="https://xatimg.com/image/9ESyrbaji0nz.gif" alt="Lanita Wallpaper">
+          <div class="overlay">   
+            <div class="icon">
+              <div class="icon2">
+                <img src="https://xatimg.com/image/yPwGwTJfapiL.png" alt="Lanita Avatar" style="border-radius:100%; width: 50px; height: 50px;">
+              </div>
+            </div>
+            <div class="username">Lanita</div>
+            <div class="pass">*********</div>
+          </div>   
+        </div>   
+      </div>
+
+      <!-- Bottom Navigation Section -->
+      <div class="navbottom">
+        <div class="navtext">
+          <div class="mun">Adoro que me partan el <b>Culo</b></div>   
+        </div>
+
+        <div class="navmenu">
+          <!-- Icon 1: Profile Popup Trigger -->
+          <div class="nlinks">
+            <a href="#?w=400" rel="1" class="poplight" title="Perfil de Lanita">
+              <div class="nicon">
+                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 256 256">
+                  <path d="M235.399 209.983a124.429 124.429 0 0 0-61.8-53.224a76 76 0 1 0-91.198 0a124.43 124.43 0 0 0-61.798 53.222a12 12 0 0 0 20.773 12.02a100.037 100.037 0 0 1 173.25.001a12 12 0 0 0 20.773-12.019zM76 96a52 52 0 1 1 52 52a52.059 52.059 0 0 1-52-52z" fill="currentColor"></path>
+                </svg>
+              </div>
+            </a>   
+          </div>
+
+          <!-- Icon 2: Instagram Popup Trigger -->
+          <div class="nlinks">
+            <a href="#?w=400" rel="2" class="poplight" title="Instagram">
+              <div class="nicon">
+                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 256 256">
+                  <path d="M128 82a46 46 0 1 0 46 46a46.052 46.052 0 0 0-46-46zm0 68a22 22 0 1 1 22-22a22.025 22.025 0 0 1-22 22zm48-130H80a60.068 60.068 0 0 0-60 60v96a60.068 60.068 0 0 0 60 60h96a60.068 60.068 0 0 0 60-60V80a60.068 60.068 0 0 0-60-60zm36 156a36.04 36.04 0 0 1-36 36H80a36.04 36.04 0 0 1-36-36V80a36.04 36.04 0 0 1 36-36h96a36.04 36.04 0 0 1 36 36zM196 76a16 16 0 1 1-16-16a16.018 16.018 0 0 1 16 16z" fill="currentColor"></path>
+                </svg>
+              </div>   
+            </a>   
+          </div>
+
+          <!-- Icon 3: Music Player Popup Trigger (Replaces YouTube) -->
+          <div class="nlinks">
+            <a href="#?w=400" rel="3" class="poplight" title="Reproductor de Música">
+              <div class="nicon">
+                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 256 256">
+                  <path d="M216 40H40a16 16 0 0 0-16 16v144a16 16 0 0 0 16 16h176a16 16 0 0 0 16-16V56a16 16 0 0 0-16-16zm-88 128a32 32 0 1 1 32-32a32.036 32.036 0 0 1-32 32zm48-64a8 8 0 0 1-8 8h-80a8 8 0 0 1 0-16h80a8 8 0 0 1 8 8z" fill="currentColor"></path>
+                </svg>
+              </div>
+            </a>  
+          </div>
+
+          <!-- Icon 4: External Link -->
+          <div class="nlinks">
+            <a href="https://xat.me/x" target="_blank" title="Corazón">
+              <div class="nicon">
+                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 256 256">
+                  <path d="M128.018 228a11.995 11.995 0 0 1-5.864-1.53C117.82 224.043 16.018 166.18 16.018 92a64.028 64.028 0 0 1 112-42.378a64.028 64.028 0 0 1 112 42.378c0 74.18-101.803 132.043-106.137 134.47a11.995 11.995 0 0 1-5.863 1.53zm-48-176a40.046 40.046 0 0 0-40 40c0 51.222 67.445 97.186 88 110c20.554-12.814 88-58.778 88-110a40.009 40.009 0 0 0-76.928-15.408a12 12 0 0 1-22.145 0A39.923 39.923 0 0 0 80.018 52z" fill="currentColor"></path>
+                </svg>
+              </div> 
+            </a>
+          </div>
+        </div>
+
+        <!-- Extra Numbered Links -->
+        <div class="navextra">
+          <div class="nave">
+            <div class="thing"><span class="extra">01.</span> <a href="https://xat.me/x" target="_blank">✴</a></div>
+            <div class="thing"><span class="extra">02.</span> <a href="https://xat.me/x" target="_blank">✴</a></div>
+            <div class="thing"><span class="extra">03.</span> <a href="https://xat.me/x" target="_blank">✴</a></div>
+            <div class="thing"><span class="extra">04.</span> <a href="https://xat.me/x" target="_blank">✴</a></div>
+            <div class="thing"><span class="extra">05.</span> <a href="https://xat.me/x" target="_blank">✴</a></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!----------- POPUP #1: PROFILE --------------> 
+  <div id="1" class="popup_block">
+    <div class="profile">
+      <div class="buttonie close-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 256 256">
+          <path d="M208.485 191.515a12 12 0 0 1-16.97 16.97L128 144.971l-63.515 63.514a12 12 0 0 1-16.97-16.97L111.029 128L47.515 64.485a12 12 0 0 1 16.97-16.97L128 111.029l63.515-63.514a12 12 0 0 1 16.97 16.97L144.971 128z" fill="currentColor"></path>
+        </svg>
+      </div>
+      
+      <div class="pfp">
+        <img draggable="false" src="https://xatimg.com/image/yPwGwTJfapiL.png" alt="Lanita Avatar">
+      </div>   
+
+      <div class="ocname">
+        Lanita
+      </div> 
+      
+      <div class="bio">
+        Sexo rico en mi pv~.
+      </div>
+    </div>
+  </div>
+
+  <!----------- POPUP #2: INSTAGRAM SOCIAL --------------> 
+  <div id="2" class="popup_block">
+    <div class="zocials">
+      <!-- Close button fixed at top right -->
+      <div class="buttonie close-btn" style="position: fixed; right: 25px; top: 15px; width: 26px; height: 26px; font-size: 13px; z-index: 20;">
+        <i class="fa-solid fa-xmark"></i>
+      </div>
+
+      <!-- First Instagram Post -->
+      <div class="twibox">
+        <div class="instabox">
+          <div class="igpfp">
+            <img draggable="false" src="https://xatimg.com/image/yPwGwTJfapiL.png" alt="IG Avatar">
+          </div>  
+          <div class="igname">
+            Lanita
+            <span class="igfollow">• follow</span>
+            <span class="iggie"><i class="fa-solid fa-ellipsis"></i></span>
+          </div>
+        </div>
+
+        <div class="igpost">
+          <img draggable="false" src="https://xatimg.com/image/rH0J3DAygbc7.gif" alt="Post GIF 1">
+        </div>
+
+        <div class="posticons">
+          <i class="fa-solid fa-heart" style="color: #ec4899;"></i>
+          <i class="fa-regular fa-comment" style="margin-left: 8px;"></i>
+          <i class="fa-regular fa-paper-plane" style="margin-left: 8px;"></i>
+          <span style="margin-left: auto; margin-right: 10px;"><i class="fa-regular fa-bookmark"></i></span>
+        </div>
+
+        <div class="igdesc">
+          <b>Sexo en la playa~</b><br>
+          Día cachondo en la playa cuando un hombre se me arrima arriba y me quita el sostén♥. 
+        </div>
+      </div>
+
+      <!-- Second Instagram Post -->
+      <div class="twibox">
+        <div class="instabox">
+          <div class="igpfp">
+            <img draggable="false" src="https://xatimg.com/image/yPwGwTJfapiL.png" alt="IG Avatar">
+          </div>  
+          <div class="igname">
+            Lanita
+            <span class="igfollow">• follow</span>
+            <span class="iggie"><i class="fa-solid fa-ellipsis"></i></span>
+          </div>
+        </div>
+
+        <div class="igpost">
+          <img draggable="false" src="https://xatimg.com/image/9ESyrbaji0nz.gif" alt="Post GIF 2">
+        </div>
+
+        <div class="posticons">
+          <i class="fa-solid fa-heart" style="color: #ec4899;"></i>
+          <i class="fa-regular fa-comment" style="margin-left: 8px;"></i>
+          <i class="fa-regular fa-paper-plane" style="margin-left: 8px;"></i>
+          <span style="margin-left: auto; margin-right: 10px;"><i class="fa-regular fa-bookmark"></i></span>
+        </div>
+
+        <div class="igdesc">
+          <b>Atardecer dulce~</b><br>
+          Disfrutando de la música y un buen momento pastel♥. 
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!----------- POPUP #3: MUSIC PLAYER (REPLACES YOUTUBE) --------------> 
+  <div id="3" class="popup_block">
+    <div class="music-card">
+      <div class="buttonie close-btn">
+        <i class="fa-solid fa-xmark"></i>
+      </div>
+
+      <div class="player-header">
+        <div class="vinyl-container">
+          <div class="vinyl-disc" id="vinyl-disc">
+            <img src="https://xatimg.com/image/yPwGwTJfapiL.png" alt="Album Cover">
+          </div>
+        </div>
+
+        <div class="track-title" id="track-title">Lanita's Special Vibe</div>
+        <div class="track-artist" id="track-artist">Pastel Playlist • Track 01</div>
+      </div>
+
+      <div class="player-controls">
+        <div class="progress-bar-wrap">
+          <span class="time-text" id="time-current">0:00</span>
+          <div class="progress-bar" id="progress-container">
+            <div class="progress-fill" id="progress-fill"></div>
+          </div>
+          <span class="time-text" id="time-duration">0:00</span>
+        </div>
+
+        <div class="btn-row">
+          <button class="ctrl-btn" id="btn-prev" title="Anterior"><i class="fa-solid fa-backward-step"></i></button>
+          <button class="ctrl-btn play-main" id="btn-play" title="Reproducir / Pausa"><i class="fa-solid fa-play" id="play-icon"></i></button>
+          <button class="ctrl-btn" id="btn-next" title="Siguiente"><i class="fa-solid fa-forward-step"></i></button>
+        </div>
+
+        <!-- Tracklist selector -->
+        <div class="track-list" id="track-list">
+          <div class="playlist-item active" data-index="0">01. Lanita - Pastel Vibe</div>
+          <div class="playlist-item" data-index="1">02. Lanita - Sweet Melodies</div>
+          <div class="playlist-item" data-index="2">03. Lanita - Night Chill</div>
+        </div>
+      </div>
+
+      <!-- Hidden Audio Element -->
+      <audio id="audio-player" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="metadata"></audio>
+    </div>
+  </div>
+
+  <script>
+    $(document).ready(function() {
+      // 1. Popup Lightbox Trigger
+      $('a.poplight[href^="#"]').click(function(e) {
+        e.preventDefault();
+        var popID = $(this).attr('rel'); 
+        var popURL = $(this).attr('href'); 
+        var query = popURL.split('?');
+        var dim = query[1] ? query[1].split('&') : ['w=400'];
+        var popWidth = dim[0].split('=')[1] || 400; 
+
+        $('#' + popID).fadeIn().css({ 'width': Number(popWidth) });
+        
+        if ($('#fade').length === 0) {
+          $('body').append('<div id="fade"></div>');
+        }
+        $('#fade').fadeIn(); 
+        return false;
+      });
+
+      // Close Popup Event
+      $(document).on('click', '.close-btn, #fade', function(e) {
+        e.preventDefault();
+        $('#fade, .popup_block').fadeOut(function() {
+          $('#fade').remove(); 
+        });
+        return false;
+      });
+
+      // 2. Music Player Functionality
+      const songs = [
+        {
+          title: "Lanita - Pastel Vibe",
+          artist: "Lanita's Choice • Track 01",
+          src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+        },
+        {
+          title: "Lanita - Sweet Melodies",
+          artist: "Lanita's Choice • Track 02",
+          src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"
+        },
+        {
+          title: "Lanita - Night Chill",
+          artist: "Lanita's Choice • Track 03",
+          src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3"
+        }
+      ];
+
+      let currentSongIndex = 0;
+      const audio = document.getElementById('audio-player');
+      const playBtn = document.getElementById('btn-play');
+      const playIcon = document.getElementById('play-icon');
+      const prevBtn = document.getElementById('btn-prev');
+      const nextBtn = document.getElementById('btn-next');
+      const vinylDisc = document.getElementById('vinyl-disc');
+      const progressContainer = document.getElementById('progress-container');
+      const progressFill = document.getElementById('progress-fill');
+      const timeCurrent = document.getElementById('time-current');
+      const timeDuration = document.getElementById('time-duration');
+      const trackTitle = document.getElementById('track-title');
+      const trackArtist = document.getElementById('track-artist');
+
+      function loadSong(index) {
+        currentSongIndex = index;
+        const song = songs[index];
+        audio.src = song.src;
+        trackTitle.textContent = song.title;
+        trackArtist.textContent = song.artist;
+
+        // Update playlist active item
+        $('.playlist-item').removeClass('active');
+        $(`.playlist-item[data-index="${index}"]`).addClass('active');
+      }
+
+      function togglePlay() {
+        if (audio.paused) {
+          audio.play().then(() => {
+            playIcon.className = 'fa-solid fa-pause';
+            vinylDisc.classList.add('playing');
+          }).catch(err => {
+            console.log('Autoplay issue:', err);
+          });
+        } else {
+          audio.pause();
+          playIcon.className = 'fa-solid fa-play';
+          vinylDisc.classList.remove('playing');
+        }
+      }
+
+      function formatTime(seconds) {
+        if (isNaN(seconds)) return "0:00";
+        const mins = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+      }
+
+      // Event Listeners for Player
+      playBtn.addEventListener('click', togglePlay);
+
+      prevBtn.addEventListener('click', () => {
+        currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+        loadSong(currentSongIndex);
+        audio.play();
+        playIcon.className = 'fa-solid fa-pause';
+        vinylDisc.classList.add('playing');
+      });
+
+      nextBtn.addEventListener('click', () => {
+        currentSongIndex = (currentSongIndex + 1) % songs.length;
+        loadSong(currentSongIndex);
+        audio.play();
+        playIcon.className = 'fa-solid fa-pause';
+        vinylDisc.classList.add('playing');
+      });
+
+      audio.addEventListener('timeupdate', () => {
+        if (audio.duration) {
+          const percent = (audio.currentTime / audio.duration) * 100;
+          progressFill.style.width = percent + '%';
+          timeCurrent.textContent = formatTime(audio.currentTime);
+          timeDuration.textContent = formatTime(audio.duration);
+        }
+      });
+
+      audio.addEventListener('ended', () => {
+        currentSongIndex = (currentSongIndex + 1) % songs.length;
+        loadSong(currentSongIndex);
+        audio.play();
+      });
+
+      progressContainer.addEventListener('click', (e) => {
+        const width = progressContainer.clientWidth;
+        const clickX = e.offsetX;
+        if (audio.duration) {
+          audio.currentTime = (clickX / width) * audio.duration;
+        }
+      });
+
+      $('.playlist-item').click(function() {
+        const idx = parseInt($(this).data('index'));
+        loadSong(idx);
+        audio.play();
+        playIcon.className = 'fa-solid fa-pause';
+        vinylDisc.classList.add('playing');
+      });
+
+      // Initialize default song
+      loadSong(0);
+    });
+  </script>
+</body>
+</html>
